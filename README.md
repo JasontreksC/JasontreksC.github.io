@@ -1,5 +1,1 @@
-<html>
-	<body>
-		Hello! This is the first page!
-	</body>
-</html>
+# 깃헙 블로그 리포지토리입니다.
