@@ -1,5 +1,6 @@
 ---
 layout: default
+toc: true
 ---
 <head>
     <link rel="stylesheet" href="{{ '/assets/css/monokai.css' | relative_url }}">
@@ -40,15 +41,13 @@ layout: default
     <script src="/assets/js/plantuml_encoder.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 1. "language-mermaid" 클래스를 가진 모든 <code> 요소를 찾습니다.
+
             const plantumlCodeBlocks = document.querySelectorAll('code.language-plantuml');
 
             plantumlCodeBlocks.forEach(codeBlock => {
-                // 2. <code> 태그의 부모인 <pre> 태그를 찾습니다.
                 const preTag = codeBlock.closest('pre');
                 
                 if (preTag) {
-                    // 3. 순수한 Mermaid 코드를 가져옵니다.
                     const plantumlSyntax = codeBlock.textContent.trim();
                     const encoded = encodePlantUML(plantumlSyntax);
                     const imgUrl = `https://www.plantuml.com/plantuml/svg/~1${encoded}`;
@@ -59,9 +58,6 @@ layout: default
                     preTag.parentNode.insertBefore(plantumlImg, preTag);
                 }
             });
-
-            // 7. Mermaid.js에게 페이지의 모든 '.mermaid' 클래스를 렌더링하라고 지시합니다.
-            mermaid.init(undefined, 'div.mermaid');
         });
     </script>
 </head>
