@@ -59,13 +59,112 @@ layout: default
             });
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const contentBlock = document.querySelector('.post-content'); // 마크다운 내용 블록
+            const tocContainer = document.querySelector('.table-of-contents'); // 목차가 삽입될 블록
+
+            if (!contentBlock || !tocContainer) {
+                console.error("TOC를 생성하기 위한 콘텐츠 블록(.post-content) 또는 목차 컨테이너(.table-of-contents)를 찾을 수 없습니다.");
+                return;
+            }
+
+            // TOC 목록을 담을 <ul> 요소를 생성
+            const tocList = document.createElement('ul');
+            tocList.classList.add('toc-list');
+            
+            // 유효한 헤더 태그 (h2, h3, h4)를 찾습니다.
+            const headings = contentBlock.querySelectorAll('h2, h3, h4');
+            
+            // 현재 목차 레벨을 추적하기 위한 변수 (h2, h3, h4)
+            let currentLevel = 0; 
+            let parentList = tocList; // 현재 항목이 추가될 부모 ul/ol 요소
+            let listStack = [tocList]; // 중첩된 ul/ol 요소를 관리할 스택
+
+            headings.forEach((heading, index) => {
+                // 1. 헤더 레벨(숫자)을 추출 (예: h2 -> 2)
+                const level = parseInt(heading.tagName.substring(1));
+                
+                // 2. 헤더에 ID가 없다면 자동 생성 (toc-1, toc-2, ...)
+                if (!heading.id) {
+                    // 헤더 텍스트를 기반으로 ID를 생성하고 할당합니다. (URL에 안전한 문자열로)
+                    const safeText = heading.textContent.trim()
+                        .toLowerCase()
+                        .replace(/[^a-z0-9\s-]/g, '') // 특수문자 제거
+                        .replace(/\s+/g, '-');        // 공백을 하이픈으로 대체
+                    heading.id = `${safeText}-${index}`; // 중복 방지를 위해 인덱스 추가
+                }
+                const headingId = heading.id;
+                
+                // 3. 중첩 목록(Nesting) 구조 처리 (H2 -> H3 또는 H3 -> H2 변화 감지)
+
+                if (level > currentLevel) {
+                    // 레벨이 증가 (예: h2 -> h3): 새 <ul> 생성 및 스택에 푸시
+                    const newUl = document.createElement('ul');
+                    newUl.classList.add(`toc-level-${level}`);
+                    
+                    // 이전 항목(li)에 새 <ul>를 자식으로 추가
+                    if (parentList.lastElementChild) {
+                        parentList.lastElementChild.appendChild(newUl);
+                    } else {
+                        // 첫 항목일 경우, tocList 자체에 추가될 때 사용.
+                        parentList.appendChild(newUl);
+                    }
+                    
+                    parentList = newUl;
+                    listStack.push(parentList);
+                } else if (level < currentLevel) {
+                    // 레벨이 감소 (예: h3 -> h2): 스택에서 pop하여 부모 목록 변경
+                    // level이 2라면 listStack에서 2단계 위를 찾을 때까지 pop
+                    while (listStack.length > (level - headings[0].tagName.substring(1).length + 1)) {
+                        listStack.pop();
+                    }
+                    parentList = listStack[listStack.length - 1];
+                }
+                
+                currentLevel = level;
+
+                // 4. 목차 항목 생성 및 추가
+                const listItem = document.createElement('li');
+                listItem.classList.add(`toc-item`, `toc-item-h${level}`);
+                
+                const link = document.createElement('a');
+                link.href = `#${headingId}`; // 링크 대상 ID
+                link.textContent = heading.textContent.trim();
+                
+                listItem.appendChild(link);
+                parentList.appendChild(listItem);
+            });
+
+            // 5. 목차 컨테이너에 최종 목록 삽입
+            // (기존의 "목차" 제목(h2) 아래에 삽입되도록 함)
+            tocContainer.appendChild(tocList);
+
+            // [선택 사항] 목차 링크 클릭 시 스무스 스크롤 효과 추가
+            tocContainer.querySelectorAll('a').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        // 부드러운 스크롤 효과 적용
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        
+                        // (선택 사항) URL 해시 업데이트
+                        window.history.pushState(null, null, `#${targetId}`);
+                    }
+                });
+            });
+        });
+
+    </script>
 </head>
 <main>
-    <nav aria-label="Table of Contents">
-        {{ content | toc_only }}
-    </nav>
-
-    <section itemprop="articleBody">
+    <h1>{{ page.title }}</h1>
+    <h3>목차</h3>
+    <nav class="table-of-contents"></nav>    
+    <section class="post-content" itemprop="articleBody">
         {{ content }}
     </section>
 </main>
