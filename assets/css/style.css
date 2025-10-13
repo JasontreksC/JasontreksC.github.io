@@ -1,0 +1,111 @@
+
+/* 1. 기본 설정 및 폰트 */
+:root {
+    --color-primary: #333;       /* 기본 텍스트 색상 */
+    --color-secondary: #555;     /* 보조 텍스트 색상 */
+    --color-link: #007bff;        /* 링크 색상 */
+    --color-background: #fff;    /* 페이지 배경색 */
+    --font-sans: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif;
+    --font-serif: Georgia, serif; 
+}
+
+body {
+    font-family: var(--font-sans);
+    line-height: 1.75;           /* 훌륭한 가독성을 위한 넓은 행간 */
+    font-size: 16px;
+    color: var(--color-primary);
+    background-color: var(--color-background);
+    margin: 0;
+}
+
+h2[id], h4[id] {
+  scroll-margin-top: 5rem; /* 뷰포트 상단에 5rem 만큼의 여백을 둡니다. */
+}
+
+/* 2. 본문 여백 및 구조 */
+.container my-5 {
+    max-width: 1080px; /* 본문 최대 폭을 좁게 설정하여 눈의 피로를 줄임 */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.5rem 1rem;
+}
+
+/* 3. 제목 스타일 */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+h1, h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+h3, h4 {
+    margin-top: 1rem;
+    margin-bottom: 0.75rem;
+}
+h5, h6 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+h1 { font-size: 2.5em; }
+h2 { font-size: 2em; border-bottom: 1px solid #eee; padding-bottom: 0.3em; } /* h2에 얇은 밑줄 */
+h3 { font-size: 1.5em; }
+
+/* 4. 본문 요소 가독성 개선 */
+p, ul, ol, blockquote {
+    margin-bottom: 1.5rem;
+}
+
+/* 5. 링크 스타일 */
+a {
+    color: var(--color-link);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* 6. 인용구 스타일 */
+blockquote {
+    border-left: 4px solid var(--color-link);
+    padding: 0.5rem 1.5rem;
+    margin-left: 0;
+    font-style: italic;
+    color: var(--color-secondary);
+    background-color: #f8f9fa; /* 연한 회색 배경 */
+}
+
+/* 8. 이미지 스타일 */
+img {
+    max-width: 100%;
+    height: auto;
+    margin: 1.5rem 0;
+    display: block;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: separate;
+    border-spacing: 5px;
+    font-family: 'Cairo', sans-serif;
+}
+
+table td {
+    padding: 10px;
+    background-color: #eee;
+}
+
+table th {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}

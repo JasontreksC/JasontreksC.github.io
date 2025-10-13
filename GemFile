@@ -1,2 +1,15 @@
 source "https://rubygems.org"
-gem "github-pages", group: :jekyll_plugins
+gem "jekyll", "~> 4.3" # 최신 Jekyll 4.x 사용
+
+group :jekyll_plugins do
+  gem "jekyll-feed" 
+  gem "jekyll-sitemap"
+  gem "jekyll-katex"
+  gem "jekyll-mermaid"
+  gem 'jekyll-toc'
+  gem "jekyll-plantuml"
+end
+
+gem 'kramdown-parser-gfm'
+gem 'bigdecimal'
+gem 'base64'

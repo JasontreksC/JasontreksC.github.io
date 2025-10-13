@@ -1,0 +1,77 @@
+---
+layout: default
+---
+<head>
+    <link rel="stylesheet" href="{{ '/assets/css/monokai.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/syntax.css' | relative_url }}">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. "language-mermaid" 클래스를 가진 모든 <code> 요소를 찾습니다.
+            const mermaidCodeBlocks = document.querySelectorAll('code.language-mermaid');
+
+            mermaidCodeBlocks.forEach(codeBlock => {
+            // 2. <code> 태그의 부모인 <pre> 태그를 찾습니다.
+            const preTag = codeBlock.closest('pre');
+            
+            if (preTag) {
+                // 3. 순수한 Mermaid 코드를 가져옵니다.
+                const mermaidSyntax = codeBlock.textContent.trim();
+                
+                // 4. 새로운 <div>를 생성하고, 여기에 코드를 넣고 클래스를 할당합니다.
+                const mermaidDiv = document.createElement('div');
+                mermaidDiv.classList.add('mermaid');
+                mermaidDiv.textContent = mermaidSyntax;
+
+                // 5. 기존 <pre> 요소를 숨기거나 제거합니다.
+                preTag.style.display = 'none';
+
+                // 6. 새로운 <div>를 <pre> 요소 앞에 삽입합니다.
+                preTag.parentNode.insertBefore(mermaidDiv, preTag);
+            }
+            });
+
+            // 7. Mermaid.js에게 페이지의 모든 '.mermaid' 클래스를 렌더링하라고 지시합니다.
+            mermaid.init(undefined, 'div.mermaid');
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
+    <script src="/assets/js/plantuml_encoder.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. "language-mermaid" 클래스를 가진 모든 <code> 요소를 찾습니다.
+            const plantumlCodeBlocks = document.querySelectorAll('code.language-plantuml');
+
+            plantumlCodeBlocks.forEach(codeBlock => {
+                // 2. <code> 태그의 부모인 <pre> 태그를 찾습니다.
+                const preTag = codeBlock.closest('pre');
+                
+                if (preTag) {
+                    // 3. 순수한 Mermaid 코드를 가져옵니다.
+                    const plantumlSyntax = codeBlock.textContent.trim();
+                    const encoded = encodePlantUML(plantumlSyntax);
+                    const imgUrl = `https://www.plantuml.com/plantuml/svg/~1${encoded}`;
+                    const plantumlImg = document.createElement('img');
+                    plantumlImg.src = imgUrl;
+
+                    preTag.style.display = 'none';
+                    preTag.parentNode.insertBefore(plantumlImg, preTag);
+                }
+            });
+
+            // 7. Mermaid.js에게 페이지의 모든 '.mermaid' 클래스를 렌더링하라고 지시합니다.
+            mermaid.init(undefined, 'div.mermaid');
+        });
+    </script>
+</head>
+<main>
+    <div class="post-content">
+        <h1>{{ page.title }}</h1>
+        
+        <div id="table-of-contents">
+            <h2>목차</h2>
+            {{ content | toc }}
+        </div>
+    </div>
+</main>

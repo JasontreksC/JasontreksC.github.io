@@ -1,11 +1,65 @@
-title: Your awesome title
+title: Jasontreks Blog
 baseurl: ""
 author:
-  name: Your Name
-  email: your-email@domain.com
-description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  name: Jasontreks
+  company: 연성대 컴소과 25학번
+  email: jasontreks@icloud.com
+  instagram: '@jasontreks'
+description: 게임 개발, 컴퓨터 그래픽스, 업무 자동화 
+ 
 
-permalink: pretty
+# ==============================
+# 2. 빌드 및 Permalink 설정 (BUILD & PERMALINKS)
+# ==============================
+# 기본 포스트의 Permalink (사용자가 보는 주소)
+permalink: /blog/:slug/ # 예: /blog/efficient-jekyll/
+
+# 빌드될 마크다운/HTML 파일의 대상 폴더
+destination: ./_site
+
+# ==============================
+# 3. 컬렉션 설정 (COLLECTIONS)
+# ==============================
+# Jekyll은 _posts 폴더를 자동으로 컬렉션으로 인식합니다.
+# 여기서는 포스트의 기본 설정을 지정합니다.
+collections:
+  posts:
+    output: true # 포스트를 HTML 파일로 빌드합니다.
+
+# ==============================
+# 4. Liquid 및 Markdown 설정 (PARSING)
+# ==============================
+# Liquid 설정
+liquid:
+  error_mode: strict # Liquid 문법 오류가 발생하면 빌드를 중단합니다.
+
+# Markdown 파서 설정
+markdown: kramdown
+kramdown:
+  input: GFM # GitHub Flavored Markdown 사용 (코드 블록 등에 유용)
+  syntax_highlighter: rouge
+  html_to_native: true
+  enable_options: true
+  toc_levels: 1..3 
+  auto_ids: true
+  options:
+    highlight_markings: true
+    
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-mermaid
+  - jekyll-katex
+  - jekyll-toc
+  - jekyll-plantuml
+
+# ==============================
+# 5. 제외할 파일 (EXCLUDE)
+# ==============================
+# 빌드 시 _site 폴더에 복사되지 않도록 제외할 파일 및 폴더
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules # (React나 기타 툴을 사용하는 경우)
+  # - api_generator.html # (만약 이 파일이 있다면 제외)

@@ -1,0 +1,35 @@
+@startuml
+
+title 리눅스 디렉터리 계층 구조
+
+folder root as "/"
+folder bin1 as "bin"
+folder bin2 as "bin"
+folder etc as "etc"
+folder usr as "usr"
+folder lib as "lib"
+folder home as "home"
+folder user1 as "user1"
+folder download as "다운로드"
+folder boot as "boot"
+action vmllink as "vmlinuz"
+file ls as "ls"
+file hosts as "hosts"
+file vmlfile as "vmlinuz"
+
+root -- bin1
+bin1 -- ls
+root -- etc
+etc -- hosts
+root -- usr
+usr -- bin2
+usr -- lib
+root -- home
+home -- user1
+user1 -- download
+root -- boot
+boot -- vmlfile
+root -- vmllink
+vmllink -[dashed]-> vmlfile
+
+@enduml

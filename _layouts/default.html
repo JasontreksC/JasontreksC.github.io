@@ -2,10 +2,83 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ page.title | default: site.title }}</title>
+
+    <link 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
+        rel="stylesheet" 
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" 
+        crossorigin="anonymous">
+    <script 
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" 
+        crossorigin="anonymous">
+    </script>
+
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css" type="text/css"/>
 </head>
 <body>
-    {{ content }}
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ '/about/' | relative_url }}">소개</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ '/category/' | relative_url }}">카테고리</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ '/contact/' | relative_url }}">문의</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="row">
+            <main class="col-lg-9">
+                {{ content }}
+            </main>
+
+            <aside class="col-lg-3 d-none d-lg-block">
+                <div class="p-4 mb-3 bg-light rounded">
+                    <h4>Jasontreks</h4>
+                    <p class="mb-0">{{ site.author.company }}</p>
+                    <h6>Email</h6>
+                    <p class="mb-0">{{ site.author.email }}</p>
+                    <h6>Instagram</h6>
+                    <p class="mb-0"> {{ site.author.instagram }}</p>
+                </div>
+                
+                <!-- Cannon Ball Page -->
+                <div class="card text-white">
+                    <img src="\assets\images\Cannonball-card.png" alt="" class="card-img height-fit" style="margin: 0%;">
+                    <div class="card-img-overlay">
+                        <a href="/projects/cannonball/" class="stretched-link"></a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <footer class="py-4 mt-auto border-top bg-light">
+        <div class="container text-center">
+            <p class="text-muted mb-0">
+                &copy; {{ site.time | date: "%Y" }} {{ site.title }}. All rights reserved.
+            </p>
+            <p class="text-muted small">
+                Powered by Jekyll and Bootstrap.
+            </p>
+        </div>
+    </footer>
 </body>
 </html>
