@@ -109,3 +109,8 @@ table th {
     color: #fff;
     padding: 10px;
 }
+
+
+pre {
+    padding-left: 10px;
+}

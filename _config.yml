@@ -37,14 +37,6 @@ liquid:
 markdown: kramdown
 kramdown:
   input: GFM # GitHub Flavored Markdown 사용 (코드 블록 등에 유용)
-  syntax_highlighter: rouge
-  html_to_native: true
-  enable_options: true
-  toc_levels: 1..3 
-  auto_ids: true
-  options:
-    highlight_markings: true
-    
 
 plugins:
   - jekyll-feed
