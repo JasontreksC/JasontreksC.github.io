@@ -21,9 +21,9 @@ permalink: /
         .then(response => response.json())
         .then(posts => {
             const container = document.getElementById('post-list-container');
-            
             // 2. 받아온 포스트 배열을 순회합니다.
             posts.forEach(post => {  
+                console.log(post)
                 // 3. 버튼/카드 HTML 요소를 생성합니다.
                 const postElement = document.createElement('div');
                 postElement.className = 'col-md-4 mb-4'; // Bootstrap 클래스 사용
