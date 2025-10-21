@@ -5,7 +5,7 @@ description: 웹 애플리케이션 프레임워크 Django
 date: 2025-10-20
 ---
 >Django는 파이썬으로 웹 애플리케이션을 개발할 수 있는 프레임워크이다.
-https://youtu.be/3EzKBFc9_MQ?si=wgxWeEccNuWpiSEB
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3EzKBFc9_MQ?si=VgwHk9XgZa1Ij7MB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ---
 
