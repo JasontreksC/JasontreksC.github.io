@@ -41,12 +41,12 @@ django-admin startproject myproject
 
 | **파일명**           | **역할**            | **간단 설명**                                                                                                          |
 | ----------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------ |
-| **`__init__.py`** | **Python 패키지 인식** | 이 디렉토리가 Python 패키지임을 알려줌.                                                                                          |
-| **`settings.py`** | **프로젝트 설정**       | Django 프로젝트의 **모든 구성**을 담고 있는 핵심 파일. 데이터베이스 연결, 애플리케이션 등록(`INSTALLED_APPS`), 미들웨어, 템플릿 경로, 정적 파일 경로 등을 설정.         |
-| **`urls.py`**     | **URL 라우팅**       | URL과 뷰 함수(요청 처리 로직)를 연결하는 **URL 라우터.** 사용자가 요청한 주소에 따라 어떤 코드를 실행할지 결정.                                             |
-| **`asgi.py`**     | **비동기 서버 설정**     | **ASGI(Asynchronous Server Gateway Interface)** 호환 웹 서버에서 프로젝트를 실행하기 위한 진입점. 주로 **WebSocket** 같은 비동기 통신을 사용할 때 사용. |
-| **`wsgi.py`**     | **동기 서버 설정**      | **WSGI(Web Server Gateway Interface)** 호환 웹 서버(Gunicorn 등)에서 프로젝트를 실행하기 위한 진입점. 대부분의 **동기식** 웹 서비스 배포에 사용.         |
-| manage.py         | **명령줄 유틸리티**      | 프로젝트를 개발하고 관리하는 데 필요한 모든 관리 작업을 수행하는 명령어 실행기                                                                       |
+| **__init__.py** | **Python 패키지 인식** | 이 디렉토리가 Python 패키지임을 알려줌.                                                                                          |
+| **settings.py** | **프로젝트 설정**       | Django 프로젝트의 **모든 구성**을 담고 있는 핵심 파일. 데이터베이스 연결, 애플리케이션 등록(`INSTALLED_APPS`), 미들웨어, 템플릿 경로, 정적 파일 경로 등을 설정.         |
+| **urls.py**     | **URL 라우팅**       | URL과 뷰 함수(요청 처리 로직)를 연결하는 **URL 라우터.** 사용자가 요청한 주소에 따라 어떤 코드를 실행할지 결정.                                             |
+| **asgi.py**     | **비동기 서버 설정**     | **ASGI(Asynchronous Server Gateway Interface)** 호환 웹 서버에서 프로젝트를 실행하기 위한 진입점. 주로 **WebSocket** 같은 비동기 통신을 사용할 때 사용. |
+| **wsgi.py**     | **동기 서버 설정**      | **WSGI(Web Server Gateway Interface)** 호환 웹 서버(Gunicorn 등)에서 프로젝트를 실행하기 위한 진입점. 대부분의 **동기식** 웹 서비스 배포에 사용.         |
+| **manage.py**         | **명령줄 유틸리티**      | 프로젝트를 개발하고 관리하는 데 필요한 모든 관리 작업을 수행하는 명령어 실행기                                                                       |
 
 ---
 
@@ -88,13 +88,13 @@ python manage.py startapp myapp
 
 | **파일/디렉토리**           | **역할**            | **간단 설명**                                                                                |
 | --------------------- | ----------------- | ---------------------------------------------------------------------------------------- |
-| **`__init__.py`**     | **Python 패키지 인식** | 해당 디렉토리가 Python 패키지임을 나타냄.                                                               |
-| **`admin.py`**        | **관리자 사이트 설정**    | Django의 내장 **관리자 사이트**에 앱의 모델(데이터 구조)을 등록하고 표시 방식을 설정.                                   |
-| **`apps.py`**         | **앱 설정**          | 앱의 이름과 설정 등을 정의하는 파일. 앱을 프로젝트에 등록할 때 사용.                                                 |
-| **`models.py`**       | **데이터베이스 모델 정의**  | 앱에서 사용할 **데이터 구조** (테이블 스키마)를 정의하는 핵심 파일. Django의 ORM(Object-Relational Mapping)을 사용합니다. |
-| **`tests.py`**        | **테스트 코드**        | 앱의 기능을 검증하기 위한 **자동화된 테스트 코드**를 작성하는 파일.                                                 |
-| **`views.py`**        | **로직 처리 (뷰)**     | 사용자의 요청(Request)을 받아 처리하고 응답(Response)을 반환하는 **핵심 로직**을 작성하는 파일. 데이터베이스 모델과 상호작용.        |
-| **`migrations` 디렉토리** | **데이터베이스 변경 관리**  | `models.py`에 변경 사항이 생겼을 때, 이를 데이터베이스에 적용하기 위한 **마이그레이션 파일**들이 저장되는 곳.                    |
+| **__init__.py**     | **Python 패키지 인식** | 해당 디렉토리가 Python 패키지임을 나타냄.                                                               |
+| **admin.py**        | **관리자 사이트 설정**    | Django의 내장 **관리자 사이트**에 앱의 모델(데이터 구조)을 등록하고 표시 방식을 설정.                                   |
+| **apps.py**         | **앱 설정**          | 앱의 이름과 설정 등을 정의하는 파일. 앱을 프로젝트에 등록할 때 사용.                                                 |
+| **models.py**       | **데이터베이스 모델 정의**  | 앱에서 사용할 **데이터 구조** (테이블 스키마)를 정의하는 핵심 파일. Django의 ORM(Object-Relational Mapping)을 사용합니다. |
+| **tests.py**        | **테스트 코드**        | 앱의 기능을 검증하기 위한 **자동화된 테스트 코드**를 작성하는 파일.                                                 |
+| **views.py**        | **로직 처리 (뷰)**     | 사용자의 요청(Request)을 받아 처리하고 응답(Response)을 반환하는 **핵심 로직**을 작성하는 파일. 데이터베이스 모델과 상호작용.        |
+| **migrations/** | **데이터베이스 변경 관리**  | `models.py`에 변경 사항이 생겼을 때, 이를 데이터베이스에 적용하기 위한 **마이그레이션 파일**들이 저장되는 곳.                    |
 
 또한 Django의 기본 데이터베이스 엔진이 SQLite3 이기떄문에, 기본 DB파일이 함께 생성된다.
 
@@ -103,13 +103,13 @@ python manage.py startapp myapp
 
 ```python
 INSTALLED_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-    'myapp.apps.MyappConfig' # <--- 이 내용 추가
+	"django.contrib.admin",
+	"django.contrib.auth",
+	"django.contrib.contenttypes",
+	"django.contrib.sessions",
+	"django.contrib.messages",
+	"django.contrib.staticfiles",
+	"myapp.apps.MyappConfig",  # 앱 등록: myapp/apps.py의 AppConfig 경로
 ]
 ```
 
@@ -182,9 +182,9 @@ urlpatterns = [
 
 
 이런식으로 구축되어있던 URL 라우팅을
-![[Pasted image 20251021004133.png]]
+![](/assets/images/django-1.png)
 이런식으로 바꿔서  url 관리를 용이하게 하는 것이다. 
-![[Pasted image 20251021004159.png]]
+![](/assets/images/django-2.png)
 
 ---
 

@@ -113,4 +113,6 @@ table th {
 
 pre {
     padding-left: 10px;
+    tab-size: 4;
+    -moz-tab-size: 4;
 }
