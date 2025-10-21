@@ -189,6 +189,9 @@ urlpatterns = [
 ---
 
 ## III. Django DB 구축
+Django는 기존 DB엔진으로 SQLite3를 사용한다. SQLite는 MySQL과 같은 서버 기반이 아니라 로컬 파일 기반 DB이며 가볍게 사용할 목적으로 쓰는 내장형 관계 데이터베이스이다.
+
+
 애플리케이션 폴더의 models.py 에 파이썬 클래스 문법으로 데이터 구조를 정의할 수 있다.
 
 ```python
@@ -221,4 +224,217 @@ python manage.py migrate
 ---
 
 ## IV. DB에 레코드 추가
+
+DB에 데이터를 삽입하는 방법은 두가지가 있다.
+1. 파이썬 쉘
+2. Django 관리자 페이지
+
+#### 파이썬 쉘로 DB에 레코드 추가
+우선 ipython이라는 쉘 프로그램을 이용하면 좋다.
+
+```
+pip install ipython
+```
+
+ipython은 터미널에서 대화형으로 파이썬 쉘을 사용할수 있도록 한다.
+![alt text](/assets/images/django-11.png)
+
+이 쉘은 코드 여러줄을 기억하기 때문에 소스 파일과 인터프리터의 장점이 있어 편리하다.
+
+ipython 설치 후 터미널에서 다음 명령을 실행하면 된다.
+
+```
+python manage.py shell
+```
+
+```
+(django) [projectpath]>python manage.py shell
+9 objects imported automatically (use -v 2 for details).
+
+Python 3.10.18 | packaged by Anaconda, Inc. | (main, Jun  5 2025, 13:08:55) [MSC v.1929 64 bit (AMD64)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 8.37.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]:
+```
+
+이제 쉘에 소스파일을 작성하듯 하나씩 실행하면 된다.
+
+```python
+In [1]: from myapp.models import Student
+In [2]: st1 = Student(name="Jason", age="26", student_id=123)
+In [3]: st1
+Out[3]: <Student: Student object (None)>
+```
+
+`Student` 객체(models.py에 정의한 테이블)를 하나 생성한 후 출력해본 것이다.
+이때 st1을 그냥 출력했을 때 기본적으로 클래스에 대한 정보가 출력이 되는데, 이를 메서드 오버라이딩을 통해 객체가 가진 데이터를 출력하도록 바꿀 수 있다.
+
+models.py에 정의된 Student 클래스를 수정해주면 된다.
+
+```python
+# Create your models here.
+class Student(models.Model):
+    name = models.CharField(max_length=64)
+    age = models.IntegerField(max_length=64)
+    student_id = models.IntegerField()
+
+    def __str__(self) -> str:
+        return f'ID: {self.id} Name: {self.name} Age: {self.age}' #save() 호출시 Django가 ID를 자동으로 부여함
+```
+
+오버라이드 후
+
+```python
+Out[4]: <Student: ID: None Name: Jason Age: 26>
+```
+
+이제 st1 객체의 save()를 호출해주면 이 데이터가 DB에 작성된다.
+그리고 save()를 호출한 순간 Django에 의해 st1객체에 id값이 부여된다.
+
+```python
+In [3]: st1.save()
+In [4]: st1
+Out[4]: <Student: ID: 4 Name: Jason Age: 26>
+```
+
+DB Browser로 데이터가 잘 저장되었는지 확인할 수 있다.
+
+![alt text](/assets/images/django-3.png)
+
+
+#### Django 관리자 페이지
+
+Django는 Django 프로젝트 관리(관리자 등록, 권한 설정, 데이터베이스 관리)를 위해 기본적인 관리자 페이지를 제공한다.
+
+우선 처음엔 관리자 하나도 없으므로, 최상위 관리자를 하나 만들어야 한다. 
+
+```
+python manage.py createsuperuser
+```
+
+그러면 다음과 같이 username, email, password를 입력하라고 한다.
+
+```
+Username (leave blank to use 'jason'): jason
+Email address: jasontreks@icloud.com
+Password:
+Password (again):
+Superuser created successfully.
+```
+
+이제 서버를 실행하고 /admin url로 접속해 관리자 페이지로 들어간다. 
+
+`http://127.0.0.1:8000/admin/`
+
+![](/assets/images/django-4.png)
+
+방금 생성한 username과 password를 입력해 로그인하면 된다.
+
+![alt text](/assets/images/django-5.png)
+
+이제 여기서 다른 유저를 등록하거나 권한을 관리할 수 있다.
+이 페이지에 DB에 저장된 테이블을 띄울 수 있다, 그러면 관리자 페이지에서도 직접 DB에 데이터 삽입/삭제/수정이 가능해진다.
+
+
+애플리케이션 폴더의 admin.py에 다음 코드 한 줄만 추가하면 된다.
+
+```python
+from django.contrib import admin
+from .models import Student # 관리자 페이지에서 띄울 테이블을 임포트
+
+# Register your models here.
+admin.site.register(Student)
+
+```
+
+그러면 이렇게 애플리케이션 이름의 필드가 하나 생기고, 그 안에 내가 띄우도록 한 테이블이 있다.
+
+![alt text](/assets/images/django-6.png)
+
+테이블을 클릭하면 이렇게 DB에 저장되어있는 데이터들을 볼 수 있으며 삽입/삭제/수정 작업도 할 수 있다.
+
+![alt text](/assets/images/django-7.png)
+
+
+---
+
+## V. MySQL 연동하기
+Django는 유연하기 때문에 프로젝트의 기본 DB 엔진을 다른것으로 쉽게 바꿀 수 있다.
+대표적인 서버 기반 DB인 MySQL로 Django 프로젝트의 DB를 변경해보자.
+
+#### MySQL Server 설치 및 DB 생성
+MySQL 서버 설치후 cli에 다음 명령을 실행한다.
+
+```sql
+-- DB 생성
+CREATE DATABASE dbname CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+-- 사용자 생성 및 권한 부여
+CREATE USER 'username'@'localhost' IDENTIFIED BY '123456';
+GRANT ALL PRIVILEGES ON dbname.* TO 'dbname'@'localhost';
+FLUSH PRIVILEGES;
+```
+
+#### settings.py 에서 설정
+프로젝트 폴더의 settings.py의 DATABASE 필드를 다음과 같이 수정한다.
+
+```python
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "dbname",
+        "USER": "username",
+        "PASSWORD": "123456",
+        "HOST": "localhost",
+        "PORT": 3306,
+        "OPTIONS": {
+            "init_command": "SET sql_mode='STRICT_TRANS_TABLES'" # 오류 발생 시 MySQL은 구문 실행을 중단하고 오류를 반환
+        }
+    }
+}
+```
+
+#### 마이그레이션
+
+manage.py로 한번 마이그레이션 한다.
+
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+
+#### superuser 계정 생성
+
+마이그레이션이 완료되면 새롭게 생성한 DB가 구축이 완료된다. 
+하지만 새 데이터베이스이므로 기존의 sqlite에 저장되어있던 superuser 정보는 없다.
+따라서 새 superuser 계정을 생성한다.
+
+```
+python manage.py createsuperuser
+```
+
+#### DB 확인
+
+이제 서버를 실행하고 관리자페이지에 접속해 확인해보자.
+![alt text](/assets/images/django-8.png)
+
+MySQL 에서 역시 마찬가지로, 관리자 페이지에서 DB 데이터를 관리할 수 있다.
+![alt text](/assets/images/django-9.png)
+
+MySQL Workbench에서도 DB가 잘 구축된것을 확인할 수 있다.
+![](/assets/images/django-10.png)
+
+관리자 페이지에서 삽입한 데이터 하나를 CLI 에서 출력해보자.
+
+```
+mysql> SELECT * FROM myapp_student;
++----+-------+-----+------------+
+| id | name  | age | student_id |
++----+-------+-----+------------+
+|  1 | jason |  12 |        123 |
++----+-------+-----+------------+
+1 row in set (0.00 sec)
+```
+
+
 
