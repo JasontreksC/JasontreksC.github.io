@@ -5,6 +5,7 @@ description: 웹 애플리케이션 프레임워크 Django
 date: 2025-10-20
 ---
 >Django는 파이썬으로 웹 애플리케이션을 개발할 수 있는 프레임워크이다.
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/3EzKBFc9_MQ?si=VgwHk9XgZa1Ij7MB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ---
@@ -363,6 +364,8 @@ admin.site.register(Student)
 Django는 유연하기 때문에 프로젝트의 기본 DB 엔진을 다른것으로 쉽게 바꿀 수 있다.
 대표적인 서버 기반 DB인 MySQL로 Django 프로젝트의 DB를 변경해보자.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zUOtOpu9RdM?si=iQpfuIq6C1EHWh6V" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 #### MySQL Server 설치 및 DB 생성
 MySQL 서버 설치후 cli에 다음 명령을 실행한다.
 
@@ -393,6 +396,8 @@ DATABASES = {
     }
 }
 ```
+
+또한 기존의 db.sqlite3 파일은 더이상 필요가 없으므로 삭제한다.
 
 #### 마이그레이션
 
