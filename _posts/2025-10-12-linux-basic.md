@@ -3,6 +3,8 @@ layout: post
 title: 리눅스 기초
 description: 우분투 리눅스를 시작하기 위한 기본 개념
 date: 2025-10-12
+collection_id: linux-study
+order: 1
 ---
 ## I. 리눅스의 시작
 핀란드 대학생 리누스 베네딕트 토르발스가 처음 개발.

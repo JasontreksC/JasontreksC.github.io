@@ -3,6 +3,8 @@ layout: post
 title: Django 베이직
 description: 웹 애플리케이션 프레임워크 Django
 date: 2025-10-20
+collection_id: markit-rag-project
+order: 3
 ---
 >Django는 파이썬으로 웹 애플리케이션을 개발할 수 있는 프레임워크이다.
 

@@ -16,6 +16,9 @@
         crossorigin="anonymous">
     </script>
 
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css" type="text/css"/>
 </head>
@@ -58,14 +61,7 @@
                     <h6>Instagram</h6>
                     <p class="mb-0"> {{ site.author.instagram }}</p>
                 </div>
-                
-                <!-- Cannon Ball Page -->
-                <div class="card text-white">
-                    <img src="\assets\images\Cannonball-card.png" alt="" class="card-img height-fit" style="margin: 0%;">
-                    <div class="card-img-overlay">
-                        <a href="/projects/cannonball/" class="stretched-link"></a>
-                    </div>
-                </div>
+    
             </aside>
         </div>
     </div>
@@ -80,5 +76,9 @@
             </p>
         </div>
     </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

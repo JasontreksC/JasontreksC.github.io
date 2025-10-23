@@ -1,0 +1,26 @@
+[
+    {
+        "id": "db-study",
+        "title": "데이터베이스 학습",
+        "description": "관계형 DB의 개념과 사용 방법을 정리한다.",
+        "date": "2025年 10月",
+        "tags": ["mysql"],
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7VofdmPnt1ZYROHeZIHLROMfi5jVQiNq61A&s"
+    },
+    {
+        "id": "linux-study",
+        "title": "리눅스 학습",
+        "description": "우분투 리눅스 운영체제의 개념과 기본 명령어, 서버 구축 방법을 정리한다.",
+        "date": "2025年 10月",
+        "tags": ["ubuntu"],
+        "thumbnail": "https://i0.wp.com/hanamon.kr/wp-content/uploads/2021/08/linux-vs-ubuntu.png?fit=768%2C439&ssl=1"
+    },
+    {
+        "id": "markit-rag-project",
+        "title": "RAG 챗봇 프로젝트",
+        "description": "약학 문서 데이터 기반 RAG 시스템을 관리할 수 있는 관리자 페이지를 구축한다.",
+        "date": "2025年 9月",
+        "tags": ["python", "django", "langchain"],
+        "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6AxBZv3d2euDdvIvT8fVRblwsPV7fe5chnMld21wiqhXa-Cer6oijt8VQZFVNICyWq2g&usqp=CAU"
+    }
+]

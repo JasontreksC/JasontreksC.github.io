@@ -1,0 +1,70 @@
+---
+layout: default
+---
+
+<!-- <nav class="fs-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" id="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/index.html">Home</a></li>
+  </ol>
+</nav> -->
+
+{% include breadcrumb.html %}
+
+<div class="p-4 mb-3 bg-body-secondary rounded">
+    <h1>Posts</h1><br>
+
+    <div id="post-list-container" class="row mb-2 pe-5">
+    <!-- 자바스크립트로 포스트 목록이 여기에 동적으로 추가됩니다 -->
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+
+        const breadcrumb_item = document.createElement('li');
+        breadcrumb_item.className = 'breadcrumb-item active';
+        breadcrumb_item.setAttribute('aria-current', 'page');
+        breadcrumb_item.innerHTML = params.get('title');
+
+        const breadcrumb = document.querySelector('ol.breadcrumb');
+        breadcrumb.appendChild(breadcrumb_item);
+
+
+        fetch('/posts.json') 
+        .then(response => response.json())
+        .then(posts => {
+            const container = document.getElementById('post-list-container');
+            // 2. 받아온 포스트 배열을 순회합니다.b
+            const postlist = {};
+
+            posts.forEach(post => {
+                console.log(post)
+                if (post.collection_id == params.get('id')){
+                    // 3. 버튼/카드 HTML 요소를 생성합니다.
+                    const postElement = document.createElement('div');
+                    postElement.className = 'card shadow p-1 m-4';
+                    postElement.innerHTML = `
+                        <div class="card-body">
+                            <h5 class="card-title">${post.title}</h5>
+                            <p class="card-description">${post.description}</p>
+                            <p class="card-meta"><small class="text-muted">${post.date}</small></p>
+                            <a href="${post.url}?collection=${params.get('title')}&title=${post.title}" class="stretched-link"></a>
+                        </div>
+                    `;
+                    postlist[post.order] = postElement;
+                    console.log('post added:', post.title)
+                }
+
+            });
+
+            Object.values(postlist).forEach(post => {
+                container.appendChild(post);
+            });
+        })
+        .catch(error => console.error('Error fetching posts:', error));
+        });
+
+
+</script>

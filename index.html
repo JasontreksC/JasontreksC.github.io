@@ -5,47 +5,115 @@ permalink: /
 ---
 <div class="p-4 p-md-5 mb-4 rounded text-bg-dark">
     <div class="col-md-8 px-0">
-        <h1 class="display-4 fst-italic">{{ site.title }}</h1>
+        <h1 class="display-4 fst-normal">{{ site.title }}</h1>
         <p class="lead my-3">{{ site.description }}</p>
     </div>
 </div>
 
-<div id="post-list-container" class="row mb-2">
-    <!-- 자바스크립트로 포스트 목록이 여기에 동적으로 추가됩니다 -->
+<div class="tag-bar-wrapper mb-5">
+    <div class="p-4 mb-3 bg-dark-subtle rounded">
+        <h3>Tags</h3>
+        <div class="d-flex align-items-center" id="tag-container">
+            <!-- 태그들을 생성합니다. -->
+        </div>
+    </div>
 </div>
+
+<div class="p-4 mb-3 bg-body-secondary rounded">
+    <h1>Collections</h1><br>
+
+    <div id="post-list-container" class="row mb-2">
+    <!-- 자바스크립트로 포스트 목록이 여기에 동적으로 추가됩니다 -->
+    </div>
+</div>
+
+
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-    // 1. JSON 파일 경로로 요청을 보냅니다.
-    fetch('/posts.json') 
-        .then(response => response.json())
-        .then(posts => {
+        let tag_list = ['전체'];
+        // 컬렉션 카드 목록 생성
+        fetch('/collections.json').then(response => response.json()).then(collections => {
+
             const container = document.getElementById('post-list-container');
-            // 2. 받아온 포스트 배열을 순회합니다.
-            posts.forEach(post => {  
-                console.log(post)
-                // 3. 버튼/카드 HTML 요소를 생성합니다.
-                const postElement = document.createElement('div');
-                postElement.className = 'col-md-4 mb-4'; // Bootstrap 클래스 사용
-                postElement.innerHTML = `
-                    <div class="card shadow-sm">
-                        <svg class="card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg">
-                            <rect fill="#6c757d" width="100%" height="100%"/>
-                            <text fill="#fff" x="50%" y="50%" text-anchor="middle" dy=".3em">이미지 영역</text>
-                        </svg>
-                        <div class="card-body">
-                            <h5 class="card-title">${post.title}</h5>
-                            <p class="card-description">${post.description}</p>
-                            <p class="card-meta"><small class="text-muted">${post.date}</small></p>
-                            <a href="${post.url}" class="stretched-link"></a>
+            collections.forEach(collection => {
+
+                // 태그 생성
+                tag_badges = '';
+                collection.tags.forEach(tag => {
+                    tag_badges += `<span class="badge text-bg-info text-light me-2 fs-6">${tag}</span>`;
+                    tag_list.push(tag);
+                });
+
+                // 컬렉션 카드 생성
+                const element = document.createElement('div');
+                element.className = 'col-md-6 mb-4';
+                element.innerHTML = `
+                    <div class="card h-100 collection">
+                        <img class="card-img-top" src="${collection.thumbnail}" alt="thumbnail image" style="height: 150px; object-fit: cover;">
+                        <div class="card-body overflow-hidden">
+                            <h5 class="card-title">${collection.title}</h5>
+                            <p class="card-description">${collection.description}</p>
+                            ${tag_badges}
+                            <a href="/collections/index.html?id=${collection.id}&title=${collection.title}" class="stretched-link"></a>
                         </div>
+                        <div class="card-footer"><small class="text-muted">${collection.date}</small></div>
                     </div>
                 `;
-                
-                container.appendChild(postElement);
-                console.log('post added:', post.title)
+                container.appendChild(element);
+                console.log('post added:', collection.title)
+            });
+        })
+        .then(() => {
+            console.log(tag_list);
+            const tag_container = document.getElementById('tag-container');
+    
+            tag_set = new Set(tag_list);
+            tag_set.forEach(tag => {
+                const tagButton = document.createElement('a');
+                tagButton.className = 'btn btn-outline-dark rounded-pill me-2 text-decoration-none tag-item';
+                tagButton.innerHTML = `<span>${tag}</span>`;
+                tagButton.addEventListener('click', function(event) {
+                    const tagItems = document.querySelectorAll('.tag-item');
+                    // a. 현재 클릭된 태그를 제외한 모든 태그의 활성화 상태(색)를 해제합니다.
+                    tagItems.forEach(item => {
+                        item.classList.remove('btn-dark');
+                        item.classList.add('btn-outline-dark');
+                    });
+                    // b. 현재 클릭된 태그를 활성화 상태로 만듭니다.
+                    this.classList.remove('btn-outline-dark');
+                    this.classList.add('btn-dark');
+                    event.preventDefault();
+
+                    // c. 선택한 태그의 컬렉션만 표시
+                    const collections = document.querySelectorAll('.collection');
+                    collections.forEach(collection => {
+                        if (this.text == '전체') {
+                            collection.parentElement.style.display = 'block';
+                        }
+                        else {
+                            const tag_badges = collection.querySelectorAll('.badge');
+                            const tags_in_collection = [];
+
+                            tag_badges.forEach(tag_badge => {
+                                tags_in_collection.push(tag_badge.textContent);
+                            });
+
+                            if (tags_in_collection.includes(this.text)) {
+                                collection.parentElement.style.display = 'grid';
+                            }
+                            else {
+                                collection.parentElement.style.display = 'none';
+                            }
+                        }
+
+                    })
+
+                });
+                tag_container.appendChild(tagButton);
             });
         })
         .catch(error => console.error('Error fetching posts:', error));
+
 });
 </script>

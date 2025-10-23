@@ -3,6 +3,8 @@ layout: post
 title: FAISS Index
 description: 대표적인 Vector DB 라이브러리
 date: 2025-10-14
+collection_id: markit-rag-project
+order: 2
 ---
 ## I. FAISS chapter 1 - Flat, IVFFlat, IVFPQ 
 **FAISS**는 **Facebook AI Simillarity Search**의 약자로, 페이스북에서 개발한 벡터 기반 유사도 검색 라이브러리이다.
