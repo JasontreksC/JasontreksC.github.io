@@ -22,5 +22,13 @@
         "date": "2025年 9月",
         "tags": ["python", "django", "langchain"],
         "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6AxBZv3d2euDdvIvT8fVRblwsPV7fe5chnMld21wiqhXa-Cer6oijt8VQZFVNICyWq2g&usqp=CAU"
+    },
+    {
+        "id": "java-study",
+        "title": "자바 학습",
+        "description": "강력한 플랫폼 독립성을 갖는 자바 프로그래밍 언어를 학습한다.",
+        "date": "2025年 10月",
+        "tags": ["java"],
+        "thumbnail": "https://miro.medium.com/1*H8DTy1ylaN5DLr-GVMUTpQ.png"
     }
 ]

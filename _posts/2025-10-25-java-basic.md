@@ -1,0 +1,69 @@
+---
+layout: post
+title: Java 기초
+description: Java 프로그래밍 언어의 기초 개념
+date: 2025-10-25
+collection_id: java-study
+order: 1
+---
+
+## I. 자바의 시작
+자바는 1991년 선마이크로시스템즈 사의 제임스 고슬링에 의해 시작되었다.
+이후 오라클이 인수하여 현재는 오라클이 서비스한다.
+
+자바는 본래 가전제품에 사용할 소프트웨어를 위해 만들어졌는데, 기존 언어는 플랫폼 종속성이 있었기 때문에 플랫폼 독립적인 새로운 언어가 필요해 탄생하게 된다.
+
+---
+
+## II. 플랫폼 독립성
+자바는 플랫폼 독립성을 가진다. 플랫폼에 종속적인 언어로 개발한 프로그램은 개발 환경과 실행 환경에서 CPU나 운영체제에 차이가 있으면 실행이 보장되지 않는다. 플랫폼마다 컴파일 방식이 다르기 때문이다.
+
+자바는 JVM이라는 가상 환경에서 작동한다. 즉 각 플랫폼에 맞는 가상 머신이 미리 준비되어 있다면 어느 플랫폼이건 한 곳에서 개발한 자바 프로그램을 실행시킬 수 있다.
+
+---
+
+## III. 바이트 코드
+자바는 컴파일러와 인터프리터가 모두 필요한 언어이다.
+<span style="font-size:17px; font-weight:bold;">컴파일러</span>는 소스코드(.java)를 바이트코드(.class)로 변환한다. 이 과정은 개발 단계에서 요구되며, JDK(Java Development Kit)에 포함되어있다.
+<span style="font-size:17px; font-weight:bold;">인터프리터</span>는 바이트코드(.class)를 기계어로 변환하여 실행시킨다. 이 과정은 실행 및 배포 단계에서 요구되며, JRE(Java Runtime Environment)에 포함되어 있다. JVM은 바로 이 안에 있다.
+
+따라서 개발이 끝난 프로그램을 배포 할 땐 JDK는 제외하고 대신 JRE를 필히 포함시켜 배포한다.
+
+---
+
+## IV. 객체지향
+자바는 강력한 객체지향 언어이다.
+
+프로그램의 구성 요소를 <span style="font-size:17px; font-weight:bold;">절차지향인 C에서는 변수와 함수</span>였다면
+<span style="font-size:17px; font-weight:bold;">객체지향인 자바</span>에서 프로그램 구성 요소는 <span style="font-size:17px; font-weight:bold;">속성과 메서드</span>가 된다.
+
+클래스는 객체를 찍어내기 위한 틀이다.
+객체는 클래스로 인해 만들어진 실체이다.
+
+---
+
+## V. Hello World 예제
+```java
+public class HelloWorld {
+	public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+```
+main 함수조차 하나의 클래스 안에 있어야 하는 완전한 형태의 객치지향이다.
+
+---
+
+## VI. 데이터 타입
+#### 기본형: 숫자, 문자, 논리
+정수 `byte`, `short`, `int`, `long`
+실수 `float`, `double`
+문자 `char`
+논리 `boolean`
+
+---
+
+#### 참조형: 배열, 클래스, 인터페이스
+배열에 대한 참조 `array`
+클래스에 대한 참조 `class`
+인터페이스에 대한 참조 `interface`
