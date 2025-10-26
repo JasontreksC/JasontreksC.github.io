@@ -54,6 +54,13 @@ h1 { font-size: 2.5em; }
 h2 { font-size: 2em; border-bottom: 1px solid #eee; padding-bottom: 0.3em; } /* h2에 얇은 밑줄 */
 h3 { font-size: 1.5em; }
 
+hr {
+    height: 10px;        /* 👈 수평선의 두께(높이) 설정 */
+    border: none;        /* 👈 기본 테두리 제거 */
+    background-color: #696969; /* 👈 선의 색상 설정 */
+    margin: 20px 0;      /* 상하 여백 설정 (선택 사항) */
+}
+
 /* 4. 본문 요소 가독성 개선 */
 p, ul, ol, blockquote {
     margin-bottom: 1.5rem;
