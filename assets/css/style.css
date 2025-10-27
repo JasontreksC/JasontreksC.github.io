@@ -104,6 +104,7 @@ table {
     border-collapse: separate;
     border-spacing: 5px;
     font-family: 'Cairo', sans-serif;
+    margin-bottom: 3rem;
 }
 
 table td {
@@ -124,4 +125,5 @@ pre {
     padding-bottom: 30px;
     tab-size: 4;
     -moz-tab-size: 4;
+    margin-bottom: 3rem;
 }
