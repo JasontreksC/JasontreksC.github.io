@@ -4,7 +4,7 @@ layout: default
 <head>
     <link rel="stylesheet" href="{{ '/assets/css/syntax.css' | relative_url }}">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>mermaid.initialize({startOnLoad:true});</script>    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // 1. "language-mermaid" 클래스를 가진 모든 <code> 요소를 찾습니다.
@@ -176,8 +176,21 @@ layout: default
             breadcrumb.appendChild(breadcrumb_item_collection);
             breadcrumb.appendChild(breadcrumb_item_post);
         });
-
     </script>
+
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+            inlineMath: [['$','$'], ['\\(','\\)']],
+            displayMath: [['$$','$$'], ['\\[','\\]']],
+            processEscapes: true
+            }
+        });
+    </script>
+
 </head>
 <main>
     {% include breadcrumb.html %}
