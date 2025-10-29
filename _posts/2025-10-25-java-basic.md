@@ -24,8 +24,8 @@ order: 1
 
 ## III. 바이트 코드
 자바는 컴파일러와 인터프리터가 모두 필요한 언어이다.
-<span style="font-size:17px; font-weight:bold;">컴파일러</span>는 소스코드(.java)를 바이트코드(.class)로 변환한다. 이 과정은 개발 단계에서 요구되며, JDK(Java Development Kit)에 포함되어있다.
-<span style="font-size:17px; font-weight:bold;">인터프리터</span>는 바이트코드(.class)를 기계어로 변환하여 실행시킨다. 이 과정은 실행 및 배포 단계에서 요구되며, JRE(Java Runtime Environment)에 포함되어 있다. JVM은 바로 이 안에 있다.
+컴파일러는 소스코드(.java)를 바이트코드(.class)로 변환한다. 이 과정은 개발 단계에서 요구되며, JDK(Java Development Kit)에 포함되어있다.
+인터프리터는 바이트코드(.class)를 기계어로 변환하여 실행시킨다. 이 과정은 실행 및 배포 단계에서 요구되며, JRE(Java Runtime Environment)에 포함되어 있다. JVM은 바로 이 안에 있다.
 
 따라서 개발이 끝난 프로그램을 배포 할 땐 JDK는 제외하고 대신 JRE를 필히 포함시켜 배포한다.
 
@@ -34,8 +34,8 @@ order: 1
 ## IV. 객체지향
 자바는 강력한 객체지향 언어이다.
 
-프로그램의 구성 요소를 <span style="font-size:17px; font-weight:bold;">절차지향인 C에서는 변수와 함수</span>였다면
-<span style="font-size:17px; font-weight:bold;">객체지향인 자바</span>에서 프로그램 구성 요소는 <span style="font-size:17px; font-weight:bold;">속성과 메서드</span>가 된다.
+프로그램의 구성 요소를 절차지향인 C에서는 변수와 함수였다면
+객체지향인 자바에서 프로그램 구성 요소는 속성과 메서드가 된다.
 
 클래스는 객체를 찍어내기 위한 틀이다.
 객체는 클래스로 인해 만들어진 실체이다.

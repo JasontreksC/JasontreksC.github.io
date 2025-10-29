@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 프로그래밍 기초 지식
+title: 컴퓨터 작동 방식
 description: C언어를 배우기 전 알아야 하는 컴퓨터에 대한 매우 기초적인 지식
 date: 2025-10-29
 collection_id: c-cpp
