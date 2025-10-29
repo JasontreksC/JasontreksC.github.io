@@ -30,5 +30,13 @@
         "date": "2025年 10月",
         "tags": ["java"],
         "thumbnail": "https://miro.medium.com/1*H8DTy1ylaN5DLr-GVMUTpQ.png"
+    },
+    {
+        "id": "c-cpp",
+        "title": "C/C++ 학습",
+        "description": "현대 프로그래밍 언어의 토대가 되는 근원적인 언어 C와, 이를 객체지향적으로 발전시킨 C++을 학습한다.",
+        "date": "2025年 10月",
+        "tags": ["c", "c++"],
+        "thumbnail": "https://www.educative.io/v2api/editorpage/5295407815458816/image/4810048073629696"
     }
 ]
