@@ -50,7 +50,7 @@ layout: default
                             <h5 class="card-title">${post.title}</h5>
                             <p class="card-description">${post.description}</p>
                             <p class="card-meta"><small class="text-muted">${post.date}</small></p>
-                            <a href="${post.url}?collection=${params.get('title')}&title=${post.title}" class="stretched-link"></a>
+                            <a href="${post.url}?collection=${encodeURIComponent(params.get('title'))}&title=${encodeURIComponent(post.title)}" class="stretched-link"></a>
                         </div>
                     `;
                     postlist[post.order] = postElement;
